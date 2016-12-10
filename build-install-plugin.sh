@@ -28,10 +28,19 @@ echo 'Installing plugins ....'
 gem install -g 'C:\HashiCorp\Vagrant\embedded\gems\specifications\vagrant-rancheros-commands-plugin.gemspec'
 gem install -g 'C:\HashiCorp\Vagrant\embedded\gems\specifications\vagrant-rancheros-vbadditions-plugin.gemspec'
 if [$2 == '--bundle']; then
-  echo 'Install bundles ....'
-  rm -rf ./executables
-  mkdir -p ./executables
-  bundle install --binstubs=./executables
+  echo "Sorry not yet working ...."
+#  rm -f *specs.*
+#  rm -rf gems
+#  mkdir gems
+#  cp -f *.gem gems/
+#  rm -rf specifications
+#  mkdir specifications
+#  cp -f *.gemspec specifications/
+#  gem generate_index
+#  echo 'Install bundles ....'
+#  rm -rf ./executables
+#  mkdir -p ./executables
+#  bundle install --binstubs=./executables
 else
   echo 'Not installing bundles ....'
   echo 'run with --bundle to install bundles'

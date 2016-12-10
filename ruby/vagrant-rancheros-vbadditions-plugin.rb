@@ -1,23 +1,31 @@
-require 'ipaddr'
-
-## Hacking this until we get a real plugin
-
-# Borrowing from http://stackoverflow.com/questions/1825928/netmask-to-cidr-in-ruby
+begin
+  require 'vagrant'
+rescue LoadError
+  raise 'The Vagrant RancherOs VirtualBox Additions plugin must be run within Vagrant'
+end
+begin
+  require 'ipaddr'
+rescue LoadError
+  raise 'The Vagrant RancherOs VirtualBox Additions plugin must load ipaddr module'
+end
 IPAddr.class_eval do
   def to_cidr
     self.to_i.to_s(2).count("1")
   end
 end
 guest "linux" do
-  require_relative "rancheros-guest"
+  require_relative "guest"
   RancherosGuest
 end
-class RancherosGuest < Vagrant.plugin("2", "rancheros-guest")
+class RancherosGuest < Vagrant.plugin("2", "guest")
   name "rancheros-vbadditions"
+  description <<-DESC
+      A Vagrant plugin to automate RancherOS Virtual Box Additions commands.
+      DESC
   def detect?(machine)
-    machine.communicate.test("cat /etc/myos-release")
+    machine.communicate.test("cat /bin/system-docker")
   end
- 
+
   guest_capability "linux", "change_host_name"  do
 	require_relative "cap/change_host_name"
 	Cap::ChangeHostName
@@ -28,12 +36,6 @@ class RancherosGuest < Vagrant.plugin("2", "rancheros-guest")
 	Cap::ConfigureNetworks
   end
 end
-class Command < Vagrant.plugin(2, :command)
-  def execute(machine, networks)
-    puts "Hello!"
-    0
-  end
-end
 module Cap
 	class ConfigureNetworks
 		def self.configure_networks(machine, networks)
@@ -41,23 +43,23 @@ module Cap
 				interfaces = []
 				comm.sudo("ip link show|grep eth[1-9]|awk '{print $2}'|sed -e 's/:$//'") do |_, result|
 					interfaces = result.split("\n")
-				end
 
-				networks.each do |network|
-					dhcp = "true"
-					iface = interfaces[network[:interface].to_i - 1]
+  				networks.each do |network|
+  					dhcp = "true"
+  					iface = interfaces[network[:interface].to_i - 1]
 
-					if network[:type] == :static
-						cidr = IPAddr.new(network[:netmask]).to_cidr
-						comm.sudo("ros config set rancher.network.interfaces.#{iface}.address #{network[:ip]}/#{cidr}")
-						comm.sudo("ros config set rancher.network.interfaces.#{iface}.match #{iface}")
+  					if network[:type] == :static
+  						cidr = IPAddr.new(network[:netmask]).to_cidr
+  						comm.sudo("ros config set rancher.network.interfaces.#{iface}.address #{network[:ip]}/#{cidr}")
+  						comm.sudo("ros config set rancher.network.interfaces.#{iface}.match #{iface}")
 
-						dhcp = "false"
-					end
-					comm.sudo("ros config set rancher.network.interfaces.#{iface}.dhcp #{dhcp}")
-				end
+  						dhcp = "false"
+  					end
+  					comm.sudo("ros config set rancher.network.interfaces.#{iface}.dhcp #{dhcp}")
+  				end
 
-				comm.sudo("system-docker restart network")
+				      comm.sudo("system-docker restart network")
+        end
 			end
 		end
 	end
