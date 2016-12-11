@@ -3,7 +3,9 @@
 The vagrant machine doesn't support RancherOS for Virtual Box extensions or specific DNS change because it's managed with the ros command (RancherOS config command).
 
 Provided Plugins :
+
 1) vagrant-rancheros-commands-plugin - Provides features to modify the network
+
 2) vagrant-rancheros-vbadditions-plugin - Provides features modify machine states during the Virtual Box Additions provisioning
 
 
