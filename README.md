@@ -54,19 +54,19 @@ _WIP_
 
 ## Build plugins
 
- 1) Install bundle and rake (gem install bundle rake)
+ 1) Install bundle and rake (`gem install bundle rake`)
 
- 2) Install git (apt-get git)
+ 2) Install git (`apt-get git`)
 
- 3) Install build essentials (apt-get build-essentials)
+ 3) Install build essentials (`apt-get build-essentials`)
 
- 4) If needed install new grub (apt-get upgrade rub) - I have a specific setup script (set-up-machine.sh)
+ 4) If needed install new grub (`apt-get upgrade rub`) - I have a specific setup script (`set-up-machine.sh`)
 
- 5) Move current Gemfile to _Gemfile in both the plugins (`mv Gemfile _Gemfile`)
+ 5) Move current Gemfile to \_Gemfile in both the plugins (`mv Gemfile _Gemfile`)
 
- 6) Run bundle init in both the plugins
+ 6) Run bundle init in both the plugins (`bundle init`)
 
- 7) Move backup _Gemfile to Gemfile in both the plugins (`mv _Gemfile Gemfile`)
+ 7) Move backup \_Gemfile to Gemfile in both the plugins (`mv _Gemfile Gemfile`)
 
  8) Run bundle install in both the projects (`bundle install`)
 
@@ -78,8 +78,7 @@ _WIP_
 
 # License
 
-Licensed under the MIT(the "License");
-you may not use this file except in compliance with the License.
+Licensed under the [https://opensource.org/licenses/MIT](MIT "License") you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
