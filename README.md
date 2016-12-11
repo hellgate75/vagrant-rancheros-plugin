@@ -62,11 +62,11 @@ _WIP_
 
  4) If needed install new grub (apt-get upgrade rub) - I have a specific setup script (set-up-machine.sh)
 
- 5) Move current Gemfile to \_Gemfile in both the plugins (`mv Gemfile \_Gemfile`)
+ 5) Move current Gemfile to _Gemfile in both the plugins (`mv Gemfile _Gemfile`)
 
  6) Run bundle init in both the plugins
 
- 7) Move backup \_Gemfile to Gemfile in both the plugins (`mv \_Gemfile Gemfile`)
+ 7) Move backup _Gemfile to Gemfile in both the plugins (`mv _Gemfile Gemfile`)
 
  8) Run bundle install in both the projects (`bundle install`)
 
