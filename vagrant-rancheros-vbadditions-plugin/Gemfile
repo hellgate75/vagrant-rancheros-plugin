@@ -1,0 +1,18 @@
+source 'https://rubygems.org'
+# source "https://rubygems.org"
+# source 'file://home/ruby/rancher-os-plugin/'
+# gemspec :name => 'vagrant-rancheros-vbadditions-plugin'
+# source 'file://home/ruby/rancher-os-plugin/'
+# gemspec :name => 'vagrant-rancheros-commands-plugin'
+
+group :development do
+  gem 'vagrant', git: 'https://github.com/mitchellh/vagrant.git'
+  # Development dependencies
+  gem 'rake'
+  # gem 'rspec', '~> 3.5.0'
+  gem 'rubocop', require: false
+end
+
+group :plugins do
+  gem 'vagrant-rancheros-vbadditions-plugin', path: '.'
+end

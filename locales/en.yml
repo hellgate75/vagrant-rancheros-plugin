@@ -1,0 +1,23 @@
+en:
+  vagrant-rancheros-commands-plugin:
+
+    actions:
+
+
+    validations:
+
+
+    errors:
+
+    deprecations:
+  vagrant-rancheros-vbadditions-plugin:
+
+      actions:
+
+
+      validations:
+
+
+      errors:
+
+      deprecations:
